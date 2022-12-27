@@ -1,5 +1,20 @@
-<div class="container">
-  <h1>Tidder</h1>
-  <h3>The Frontpage of Internet</h3>
+<h1>Tidder</h1>
+<h3>The beginning of the Internet</h3>
 
-</div>
+<% @posts.each do |post| %>
+  <div class="post-container">
+    <h1><%= post.title %></h1>
+    <div class="post-data">
+      <p>Created by user_id: <%= post.user_id %></p>
+      <p><%= post.created_at %></p>
+    </div>
+    <p><%= post.content %><p>
+    <%# delete / destroy %>
+    <div class="post-actions">
+      <%= link_to post_path(post), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } do %>
+        <span class="post-icon-link"><i class="fa-solid fa-trash"></i></span>
+      <% end %>
+    </div>
+  </div>
+
+<% end %>
