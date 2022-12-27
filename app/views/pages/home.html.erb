@@ -9,11 +9,29 @@
       <p><%= post.created_at %></p>
     </div>
     <p><%= post.content %><p>
-    <%# delete / destroy %>
+
     <div class="post-actions">
-      <%= link_to post_path(post), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } do %>
-        <span class="post-icon-link"><i class="fa-solid fa-trash"></i></span>
-      <% end %>
+      <ul>
+        <li>
+          <%# delete / destroy %>
+          <%= link_to post_path(post), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } do %>
+            <span class="post-icon-link"><i class="fa-solid fa-trash"></i></span>
+          <% end %>
+        </li>
+        <li>
+          <i class="fa-solid fa-arrow-up"></i>
+        </li>
+        <li>
+          <i class="fa-solid fa-arrow-down"></i>
+        </li>
+        <li>
+          <i class="fa-solid fa-ellipsis-vertical"></i>
+        </li>
+      </ul>
+    </div>
+
+    <div class="post-comments">
+      <p>Number of comments</p>
     </div>
   </div>
 
