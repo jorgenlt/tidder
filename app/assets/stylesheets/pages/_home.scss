@@ -30,3 +30,22 @@
     font-size: 10px;
   }
 }
+
+.post-actions {
+
+  ul {
+    display: flex;
+    justify-content: space-between;
+    padding: 0px;
+    margin: 10px 0px;
+  }
+
+  li {
+    list-style: none;
+    margin-right: 10px;
+  }
+}
+
+.post-comments {
+  font-size: 10px;
+}
