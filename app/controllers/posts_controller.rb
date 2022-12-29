@@ -16,6 +16,29 @@ class PostsController < ApplicationController
     redirect_to root_path
   end
 
+  def upvote
+    @post = Post.find(params[:id])
+    if current_user.voted_up_on? @post
+      @post.unvote_by current_user
+    else
+      @post.upvote_by current_user
+    end
+    # render 'vote.js.erb'
+    redirect_to root_path
+
+  end
+
+  def downvote
+    @post = Post.find(params[:id])
+    if current_user.voted_down_on? @post
+      @post.unvote_by current_user
+    else
+      @post.downvote_by current_user
+    end
+    # render "vote.js.erb"
+    redirect_to root_path
+  end
+
   private
 
   def post_params

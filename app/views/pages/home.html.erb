@@ -12,17 +12,22 @@
 
     <div class="post-actions">
       <ul>
+        <div class="voting">
+          <li>
+            <%= render 'posts/upvote_link', post: post %>
+          </li>
+          <li>
+            <%= render 'posts/like_count', post: post %>
+          </li>
+          <li>
+            <%= render 'posts/downvote_link', post: post %>
+          </li>
+        </div>
         <li>
           <%# delete / destroy %>
           <%= link_to post_path(post), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } do %>
             <span class="post-icon-link"><i class="fa-solid fa-trash"></i></span>
           <% end %>
-        </li>
-        <li>
-          <i class="fa-solid fa-arrow-up"></i>
-        </li>
-        <li>
-          <i class="fa-solid fa-arrow-down"></i>
         </li>
         <li>
           <i class="fa-solid fa-ellipsis-vertical"></i>
