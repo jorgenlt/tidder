@@ -19,10 +19,15 @@
           <% end %>
         </li>
         <li>
+          <%= render 'posts/upvote_link', post: post %>
           <i class="fa-solid fa-arrow-up"></i>
         </li>
         <li>
+          <%= render 'posts/downvote_link', post: post %>
           <i class="fa-solid fa-arrow-down"></i>
+        </li>
+        <li>
+          <%= render 'posts/like_count', post: post %>
         </li>
         <li>
           <i class="fa-solid fa-ellipsis-vertical"></i>

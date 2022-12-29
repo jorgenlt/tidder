@@ -6,5 +6,11 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
 
-  resources :posts, only: [:new, :create, :destroy]
+  resources :posts do
+    member do
+      get "upvote", to: "posts#upvote"
+      get "downvote", to: "posts#downvote"
+    end
+  end
+
 end
