@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  before_action :set_post, only: %i[ show edit update destroy ]
+
   def new
     @post = Post.new
   end
@@ -10,6 +12,14 @@ class PostsController < ApplicationController
     redirect_to root_path
   end
 
+  def update
+    if @post.update(post_params)
+      redirect_to @post, notice: "Post was successfully updated."
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
@@ -18,11 +28,19 @@ class PostsController < ApplicationController
 
   def upvote
     @post = Post.find(params[:id])
-    @post.upvote_by current_user
-    render 'vote.js.erb'
+    if current_user.voted_up_on? @post
+      @post.unvote_by current_user
+    else
+      @post.upvote_by current_user
+    end
+    render "vote.js.erb"
   end
 
   private
+
+  def set_post
+    @post = Post.find(params[:id])
+  end
 
   def post_params
     params.require(:post).permit(:title, :content)
