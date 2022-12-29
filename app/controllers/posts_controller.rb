@@ -23,7 +23,9 @@ class PostsController < ApplicationController
     else
       @post.upvote_by current_user
     end
-    render "vote.js.erb"
+    # render 'vote.js.erb'
+    redirect_to root_path
+
   end
 
   def downvote
@@ -33,7 +35,8 @@ class PostsController < ApplicationController
     else
       @post.downvote_by current_user
     end
-    render "vote.js.erb"
+    # render "vote.js.erb"
+    redirect_to root_path
   end
 
   private
