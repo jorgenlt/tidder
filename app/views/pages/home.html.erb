@@ -5,7 +5,7 @@
   <div class="post-container">
     <h1><%= post.title %></h1>
     <div class="post-data">
-      <p>Created by user_id: <%= post.user_id %></p>
+      <p>Created by user: <%= User.find(post.user_id).username %></p>
       <p><%= post.created_at %></p>
     </div>
     <p><%= post.content %><p>

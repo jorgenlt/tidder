@@ -3,6 +3,7 @@ class PagesController < ApplicationController
 
   def home
     @posts = Post.all.order(cached_votes_score: :desc)
+    
   end
 
 end
