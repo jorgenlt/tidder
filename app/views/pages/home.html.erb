@@ -35,9 +35,31 @@
       </ul>
     </div>
 
-    <div class="post-comments">
-      <p>Number of comments</p>
+    <%# create comment %>
+    <div>
+      <% comment = Comment.new %>
+      <%= simple_form_for comment do |f| %>
+        <%= hidden_field_tag "comment[post_id]", "#{post.id}" %>
+        <%= hidden_field_tag "comment[user_id]", "#{current_user.id}" %>
+        <%= f.text_area :content %>
+        <%= f.submit %>
+      <% end %>
     </div>
-  </div>
 
+    <%# comments %>
+    <div class="post-comments">
+      <div>
+        <p>Comments:</p>
+        <p>Number of comments</p>
+        <p>Some other information</p>
+      </div>
+      <% comments = Comment.where(post_id: post.id) %>
+      <% comments.each do |comment| %>
+        <p><strong>username</strong></p>
+        <p><%= User.find(comment.user_id).username %></p>
+        <p><em><%= comment.content %></em></p>
+      <% end %>
+    </div>
+
+  </div>
 <% end %>

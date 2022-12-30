@@ -11,6 +11,9 @@ Rails.application.routes.draw do
       get "upvote", to: "posts#upvote"
       get "downvote", to: "posts#downvote"
     end
+    resources :comments, only: [:new, :create, :show]
+
   end
 
+  resources :comments, only: [:new, :create, :show]
 end
