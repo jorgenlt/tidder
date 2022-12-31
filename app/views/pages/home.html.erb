@@ -12,8 +12,8 @@
 
 
     <%# create comment %>
-    <div class="post-comments display-none">
-      <div class="create-comment display-none">
+    <div class="post-comments display-none" data-post-target="comments">
+      <div class="create-comment display-none" data-post-target="addComment">
         <% comment = Comment.new %>
         <%= simple_form_for comment do |f| %>
           <%= hidden_field_tag "comment[post_id]", "#{post.id}" %>
@@ -24,6 +24,9 @@
       </div>
 
     <%# comments %>
+      <div class="cursor-pointer" data-action="click->post#addComment" data-post-target="hideAddComment">
+        <p>Add comment</p>
+      </div>
       <% comments = Comment.where(post_id: post.id) %>
       <% comments.each do |comment| %>
         <p><strong>username</strong></p>
@@ -46,7 +49,7 @@
             <%= render 'posts/downvote_link', post: post %>
           </li>
         </div>
-        <li>
+        <li class="cursor-pointer" data-action="click->post#showComments">
           <span><i class="fa-solid fa-comments"></i> <%= comments.length %> Comments</span>
         </li>
         <li>
