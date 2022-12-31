@@ -1,70 +1,73 @@
 <h1>Tidder</h1>
 <h3>The beginning of the Internet</h3>
 
-<% @posts.each do |post| %>
-  <div class="post-container" data-controller="post">
-    <div class="post-data">
-      <p>Posted by <%= User.find(post.user_id).username %> <%= time_ago_in_words(post.created_at) %> ago</p>
-    </div>
-    <h1><%= post.title %></h1>
-    <p><%= post.content %><p>
+<div class="center">
+  <% @posts.each do |post| %>
+    <div class="post-container" data-controller="post">
+      <div class="post-data">
+        <p>Posted by <%= User.find(post.user_id).username %> <%= time_ago_in_words(post.created_at) %> ago</p>
+      </div>
+      <h1><%= post.title %></h1>
+      <p><%= post.content %><p>
 
 
-    <%# create comment %>
-    <div class="post-comments display-none" data-post-target="comments">
-      <div class="create-comment display-none" data-post-target="addComment">
-        <% comment = Comment.new %>
-        <%= simple_form_for comment do |f| %>
-          <%= hidden_field_tag "comment[post_id]", "#{post.id}" %>
-          <%= hidden_field_tag "comment[user_id]", "#{current_user.id}" %>
-          <%= f.input :content, placeholder: 'What are your thoughts?', label: false, input_html: { rows: '3' } %>
-          <%= f.button :submit, 'Add comment', class: 'btn-primary' %>
+      <%# create comment %>
+      <div class="post-comments display-none" data-post-target="comments">
+        <div class="create-comment display-none" data-post-target="addComment">
+          <% comment = Comment.new %>
+          <%= simple_form_for comment do |f| %>
+            <%= hidden_field_tag "comment[post_id]", "#{post.id}" %>
+            <%= hidden_field_tag "comment[user_id]", "#{current_user.id}" %>
+            <%= f.input :content, placeholder: 'What are your thoughts?', label: false, input_html: { rows: '3' } %>
+            <%= f.button :submit, 'Add comment', class: 'btn-primary' %>
+          <% end %>
+        </div>
+
+      <%# comments %>
+        <div class="cursor-pointer add-comment" data-action="click->post#addComment" data-post-target="hideAddComment">
+          <span><i class="fa-solid fa-comment"></i> Add comment</span>
+        </div>
+        <% comments = Comment.where(post_id: post.id) %>
+        <% comments.each do |comment| %>
+          <div class="comment">
+            <p class="comment-info"><strong><%= User.find(comment.user_id).username %></strong> - <span class="time-ago"><%= time_ago_in_words(comment.created_at) %> ago</span></p>
+            <p><%= comment.content %></p>
+          </div>
         <% end %>
       </div>
 
-    <%# comments %>
-      <div class="cursor-pointer add-comment" data-action="click->post#addComment" data-post-target="hideAddComment">
-        <span><i class="fa-solid fa-comment"></i> Add comment</span>
+      <%# post actions %>
+      <div class="post-actions">
+        <ul>
+          <div class="voting">
+            <li>
+              <%= render 'posts/upvote_link', post: post %>
+            </li>
+            <li>
+              <%= render 'posts/like_count', post: post %>
+            </li>
+            <li>
+              <%= render 'posts/downvote_link', post: post %>
+            </li>
+          </div>
+          <li class="cursor-pointer" data-action="click->post#showComments">
+            <span><i class="fa-solid fa-comments"></i> <%= comments.length %> Comments</span>
+          </li>
+          <li>
+            <%# delete / destroy %>
+            <%= link_to post_path(post), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } do %>
+              <span class="post-icon-link"><i class="fa-solid fa-trash"></i> Delete</span>
+            <% end %>
+          </li>
+          <li>
+            <span><i class="fa-solid fa-share"></i> Share</span>
+          </li>
+          <li>
+            <i class="fa-solid fa-ellipsis-vertical"></i>
+          </li>
+        </ul>
       </div>
-      <% comments = Comment.where(post_id: post.id) %>
-      <% comments.each do |comment| %>
-        <div class="comment">
-          <p class="comment-info"><strong><%= User.find(comment.user_id).username %></strong> - <span class="time-ago"><%= time_ago_in_words(comment.created_at) %> ago</span></p>
-          <p><%= comment.content %></p>
-        </div>
-      <% end %>
     </div>
+  <% end %>
 
-    <%# post actions %>
-    <div class="post-actions">
-      <ul>
-        <div class="voting">
-          <li>
-            <%= render 'posts/upvote_link', post: post %>
-          </li>
-          <li>
-            <%= render 'posts/like_count', post: post %>
-          </li>
-          <li>
-            <%= render 'posts/downvote_link', post: post %>
-          </li>
-        </div>
-        <li class="cursor-pointer" data-action="click->post#showComments">
-          <span><i class="fa-solid fa-comments"></i> <%= comments.length %> Comments</span>
-        </li>
-        <li>
-          <%# delete / destroy %>
-          <%= link_to post_path(post), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } do %>
-            <span class="post-icon-link"><i class="fa-solid fa-trash"></i> Delete</span>
-          <% end %>
-        </li>
-        <li>
-          <span><i class="fa-solid fa-share"></i> Share</span>
-        </li>
-        <li>
-          <i class="fa-solid fa-ellipsis-vertical"></i>
-        </li>
-      </ul>
-    </div>
-  </div>
-<% end %>
+</div>
