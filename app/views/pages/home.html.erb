@@ -3,11 +3,10 @@
 
 <% @posts.each do |post| %>
   <div class="post-container" data-controller="post">
-    <h1><%= post.title %></h1>
     <div class="post-data">
-      <p>Created by user: <%= User.find(post.user_id).username %></p>
-      <p><%= post.created_at %></p>
+      <p>Posted by <%= User.find(post.user_id).username %> <%= time_ago_in_words(post.created_at) %> ago</p>
     </div>
+    <h1><%= post.title %></h1>
     <p><%= post.content %><p>
 
 
@@ -18,20 +17,21 @@
         <%= simple_form_for comment do |f| %>
           <%= hidden_field_tag "comment[post_id]", "#{post.id}" %>
           <%= hidden_field_tag "comment[user_id]", "#{current_user.id}" %>
-          <%= f.input :content, placeholder: 'What are your thoughts?', label: false, input_html: { rows: '5' } %>
+          <%= f.input :content, placeholder: 'What are your thoughts?', label: false, input_html: { rows: '3' } %>
           <%= f.button :submit, 'Add comment', class: 'btn-primary' %>
         <% end %>
       </div>
 
     <%# comments %>
-      <div class="cursor-pointer" data-action="click->post#addComment" data-post-target="hideAddComment">
-        <p>Add comment</p>
+      <div class="cursor-pointer add-comment" data-action="click->post#addComment" data-post-target="hideAddComment">
+        <span><i class="fa-solid fa-comment"></i> Add comment</span>
       </div>
       <% comments = Comment.where(post_id: post.id) %>
       <% comments.each do |comment| %>
-        <p><strong>username</strong></p>
-        <p><%= User.find(comment.user_id).username %></p>
-        <p><em><%= comment.content %></em></p>
+        <div class="comment">
+          <p class="comment-info"><strong><%= User.find(comment.user_id).username %></strong> - <span class="time-ago"><%= time_ago_in_words(comment.created_at) %> ago</span></p>
+          <p><%= comment.content %></p>
+        </div>
       <% end %>
     </div>
 

@@ -15,7 +15,7 @@
   display: flex;
   flex-direction: column;
   width: 50vw;
-  padding: 20px 20px;
+  padding: 10px 10px;
   margin: 20px 20px;
   box-shadow: 0px 0px 86px -11px rgba(0, 0, 0, 0.23);
 
@@ -25,27 +25,34 @@
   }
 
   h1 {
-    font-size: 30px;
+    font-size: 18px;
     margin: 0px 0px;
   }
 
   p {
+    font-size: 14px;
     margin: 0px 0px;
   }
 
 }
 
 .post-data {
-  margin: 5px 0px;
+  margin: 0px 0px 5px 0px;
 
   p {
     margin: 0px 0px;
-    font-size: 10px;
+    font-size: 12px;
+    color: $light-gray;
   }
 }
 
 .post-actions {
-  font-size: 14px;
+  font-size: 12px;
+  color: $light-gray;
+
+  a {
+    color: $light-gray;
+  }
 
   ul {
     display: flex;
@@ -65,10 +72,27 @@
 }
 
 .post-comments {
-  font-size: 12px;
+  .add-comment {
+    font-size: 12px;
+    color: $light-gray;
+  }
+
+  .comment {
+    margin: 20px 0px 0px 0px;
+  }
+
+  .comment-info {
+    font-size: 12px;
+  }
+
+  .time-ago {
+    color: $light-gray
+  }
 }
 
 .create-comment {
+  margin: 20px 0px 0px 0px;
+
   form {
     display: flex;
     flex-direction: column;
