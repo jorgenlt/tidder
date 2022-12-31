@@ -2,7 +2,7 @@
 <h3>The beginning of the Internet</h3>
 
 <% @posts.each do |post| %>
-  <div class="post-container">
+  <div class="post-container" data-controller="post">
     <h1><%= post.title %></h1>
     <div class="post-data">
       <p>Created by user: <%= User.find(post.user_id).username %></p>
@@ -10,6 +10,32 @@
     </div>
     <p><%= post.content %><p>
 
+
+    <%# create comment %>
+    <div class="post-comments display-none" data-post-target="comments">
+      <div class="create-comment display-none" data-post-target="addComment">
+        <% comment = Comment.new %>
+        <%= simple_form_for comment do |f| %>
+          <%= hidden_field_tag "comment[post_id]", "#{post.id}" %>
+          <%= hidden_field_tag "comment[user_id]", "#{current_user.id}" %>
+          <%= f.input :content, placeholder: 'What are your thoughts?', label: false, input_html: { rows: '5' } %>
+          <%= f.button :submit, 'Add comment', class: 'btn-primary' %>
+        <% end %>
+      </div>
+
+    <%# comments %>
+      <div class="cursor-pointer" data-action="click->post#addComment" data-post-target="hideAddComment">
+        <p>Add comment</p>
+      </div>
+      <% comments = Comment.where(post_id: post.id) %>
+      <% comments.each do |comment| %>
+        <p><strong>username</strong></p>
+        <p><%= User.find(comment.user_id).username %></p>
+        <p><em><%= comment.content %></em></p>
+      <% end %>
+    </div>
+
+    <%# post actions %>
     <div class="post-actions">
       <ul>
         <div class="voting">
@@ -23,43 +49,22 @@
             <%= render 'posts/downvote_link', post: post %>
           </li>
         </div>
+        <li class="cursor-pointer" data-action="click->post#showComments">
+          <span><i class="fa-solid fa-comments"></i> <%= comments.length %> Comments</span>
+        </li>
         <li>
           <%# delete / destroy %>
           <%= link_to post_path(post), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } do %>
-            <span class="post-icon-link"><i class="fa-solid fa-trash"></i></span>
+            <span class="post-icon-link"><i class="fa-solid fa-trash"></i> Delete</span>
           <% end %>
+        </li>
+        <li>
+          <span><i class="fa-solid fa-share"></i> Share</span>
         </li>
         <li>
           <i class="fa-solid fa-ellipsis-vertical"></i>
         </li>
       </ul>
     </div>
-
-    <%# create comment %>
-    <div>
-      <% comment = Comment.new %>
-      <%= simple_form_for comment do |f| %>
-        <%= hidden_field_tag "comment[post_id]", "#{post.id}" %>
-        <%= hidden_field_tag "comment[user_id]", "#{current_user.id}" %>
-        <%= f.text_area :content %>
-        <%= f.submit %>
-      <% end %>
-    </div>
-
-    <%# comments %>
-    <div class="post-comments">
-      <div>
-        <p>Comments:</p>
-        <p>Number of comments</p>
-        <p>Some other information</p>
-      </div>
-      <% comments = Comment.where(post_id: post.id) %>
-      <% comments.each do |comment| %>
-        <p><strong>username</strong></p>
-        <p><%= User.find(comment.user_id).username %></p>
-        <p><em><%= comment.content %></em></p>
-      <% end %>
-    </div>
-
   </div>
 <% end %>

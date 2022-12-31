@@ -1,4 +1,12 @@
 // Specific CSS for your home-page
+.display-none {
+  display: none;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
 .container {
   margin-top: 30px;
 }
@@ -37,12 +45,13 @@
 }
 
 .post-actions {
+  font-size: 14px;
 
   ul {
     display: flex;
     justify-content: space-between;
     padding: 0px;
-    margin: 10px 0px;
+    margin: 10px 0px 0px 0px;
   }
 
   li {
@@ -57,4 +66,11 @@
 
 .post-comments {
   font-size: 12px;
+}
+
+.create-comment {
+  form {
+    display: flex;
+    flex-direction: column;
+  }
 }
