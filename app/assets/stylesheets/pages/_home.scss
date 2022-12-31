@@ -1,4 +1,8 @@
 // Specific CSS for your home-page
+.display-none {
+  display: none;
+}
+
 .container {
   margin-top: 30px;
 }
@@ -37,6 +41,7 @@
 }
 
 .post-actions {
+  font-size: 14px;
 
   ul {
     display: flex;
@@ -60,7 +65,6 @@
 }
 
 .create-comment {
-  display: none;
   form {
     display: flex;
     flex-direction: column;
