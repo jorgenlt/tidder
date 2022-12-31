@@ -42,7 +42,7 @@
     display: flex;
     justify-content: space-between;
     padding: 0px;
-    margin: 10px 0px;
+    margin: 10px 0px 0px 0px;
   }
 
   li {
@@ -57,4 +57,12 @@
 
 .post-comments {
   font-size: 12px;
+}
+
+.create-comment {
+  display: none;
+  form {
+    display: flex;
+    flex-direction: column;
+  }
 }
