@@ -59,8 +59,13 @@
           <li>
             <span><i class="fa-solid fa-share"></i> Share</span>
           </li>
-          <li>
-            <i class="fa-solid fa-ellipsis-vertical"></i>
+          <li class="cursor-pointer" data-bs-toggle="dropdown">
+            <i class="fa-solid fa-ellipsis"></i>
+            <div class="dropdown-menu">
+              <%= link_to 'Edit post', edit_post_path(post) %>
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+            </div>
           </li>
         </ul>
       </div>
