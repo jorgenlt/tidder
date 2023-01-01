@@ -51,16 +51,17 @@
             <span><i class="fa-solid fa-comments"></i> <%= comments.length %> Comments</span>
           </li>
           <li>
-            <%# delete / destroy %>
-            <%= link_to post_path(post), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } do %>
-              <span class="post-icon-link"><i class="fa-solid fa-trash"></i> Delete</span>
-            <% end %>
-          </li>
-          <li>
             <span><i class="fa-solid fa-share"></i> Share</span>
           </li>
-          <li>
-            <i class="fa-solid fa-ellipsis-vertical"></i>
+          <li class="dropdown">
+            <a href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fa-solid fa-ellipsis"></i>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <%= link_to 'Report', root_path, class: 'dropdown-item' %>
+              <%= link_to 'Edit post', edit_post_path(post), class: 'dropdown-item' %>
+              <%= link_to 'Delete post', post_path(post), class: 'dropdown-item', data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+            </div>
           </li>
         </ul>
       </div>

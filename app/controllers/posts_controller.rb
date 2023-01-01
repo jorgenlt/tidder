@@ -10,6 +10,20 @@ class PostsController < ApplicationController
     redirect_to root_path
   end
 
+  def edit
+    @post = Post.find(params[:id])
+  end
+
+  def update
+    @post = Post.find(params[:id])
+    if @post.update(post_params)
+      redirect_to root_path
+      flash.notice = "Post was edited."
+    else
+      flash.alert = "Your edits were not saved. Try again."
+    end
+  end
+
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
