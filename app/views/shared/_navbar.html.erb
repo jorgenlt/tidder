@@ -1,17 +1,37 @@
-<div>
+<header>
   <%# desktop navbar %>
-  <div id="nav-home">
-    <ul class="nav-links">
-      <li>
-        <%= link_to 'Create post', new_post_path %>
-      </li>
-      <li>link 2</li>
-      <li>link 3</li>
-      <li>
-        <%= link_to 'Log out', destroy_user_session_path, data: {turbo_method: :delete} %>
-      </li>
-    </ul>
-  </div>
+  <% if user_signed_in? %>
+    <div class="desktop-nav-home">
+      <div class="nav-container">
+        <div class="nav-start">
+          <img
+            src="https://i0.wp.com/www.vectorico.com/wp-content/uploads/2018/08/Reddit-logo.png?resize=300%2C300"
+            style="height: 40px; padding: 5px; margin-right: 10px;"
+            alt="logo">
+          <%= link_to root_path do %>
+            <i class="fa-solid fa-house"></i>
+          <% end %>
+        </div>
+
+        <div>
+          <ul>
+            <li>
+              <%= link_to 'Create post', new_post_path, class: 'nav-link' %>
+            </li>
+            <li class="dropdown">
+              <a href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fa-solid fa-user"></i>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <%= link_to 'Log out', destroy_user_session_path, class: "dropdown-item", data: {turbo_method: :delete} %>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
 
   <%# mobile navbar %>
   <div class="" id="mobile-nav-home">
@@ -35,7 +55,7 @@
       </ul>
     </div>
   </div>
-</div>
+</header>
 
 <script type="text/javascript">
   const pushbar = new Pushbar({
