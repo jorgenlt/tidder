@@ -1,4 +1,8 @@
 // Specific CSS for your home-page
+body {
+  background: #dae0e6;
+}
+
 .display-none {
   display: none;
 }
@@ -8,6 +12,7 @@
   flex-direction: column;
   align-items: center;
   padding-top: 50px;
+  background: #dae0e6;
 }
 
 .cursor-pointer {
