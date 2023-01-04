@@ -19,10 +19,6 @@ body {
   cursor: pointer;
 }
 
-.container {
-  margin-top: 30px;
-}
-
 .post-container {
   background-color: $white;
   display: flex;
@@ -124,5 +120,13 @@ body {
   form {
     display: flex;
     flex-direction: column;
+  }
+}
+
+// responsiveness
+
+@media only screen and (min-width: 600px) {
+  .container {
+    margin-top: 30px;
   }
 }

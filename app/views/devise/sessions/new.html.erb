@@ -2,7 +2,7 @@
   <div class="sign-in-container">
     <div class="sign-in-up" data-controller="signinup">
       <div class="sign-in" data-signinup-target="signIn">
-        <h2>Log in</h2>
+        <h2>Sign in</h2>
 
         <div class="sign-in-form">
           <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), data: { turbo: :false }) do |f| %>
@@ -32,7 +32,7 @@
       <div class="sign-up display-none" data-signinup-target="signUp">
         <h2>Sign up</h2>
         <div class="cursor-pointer" data-action="click->signinup#toggleSignInUp">
-          <a href="#">Already registered? Log in here.</a>
+          <a href="#">Already registered? Sign in here.</a>
         </div>
 
         <div class="sign-up-form">
