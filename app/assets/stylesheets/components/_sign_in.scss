@@ -1,3 +1,6 @@
+
+// devise/sessions/new.html.erb
+
 .sign-in-container {
   height: 100vh;
   width: 100%;
@@ -19,4 +22,21 @@
 
   }
 
+}
+
+// responsiveness
+
+@media only screen and (max-width: 600px) {
+  .container {
+    padding: 0px 10px;
+    margin-top: 0px;
+  }
+
+  .sign-in-container {
+    .sign-in-up {
+      width: 100%;
+      padding: 15px 15px;
+
+    }
+  }
 }

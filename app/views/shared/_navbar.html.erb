@@ -34,27 +34,60 @@
 
 
   <%# mobile navbar %>
-  <div class="" id="mobile-nav-home">
-    <%# open menu %>
-    <div id="burger" data-pushbar-target="mypushbar1">
-      <span><i class="fa-solid fa-bars"></i></span>
-    </div>
-
-    <%# pushbar slide menu %>
-    <div id="mobile-menu" data-pushbar-id="mypushbar1" data-pushbar-direction="right">
-      <%# close menu %>
-      <div id="burger-close" data-pushbar-close>
-        <span><i class="fa-solid fa-xmark"></i></span>
+  <% if user_signed_in? %>
+    <div class="" id="mobile-nav-home">
+      <%# open menu %>
+      <div id="burger" data-pushbar-target="mypushbar1">
+        <span><i class="fa-solid fa-bars"></i></span>
       </div>
-      <%# menu content %>
-      <ul class="mobile-nav-links">
-        <li>link 1</li>
-        <li>link 2</li>
-        <li>link 3</li>
-        <li>link 4</li>
+
+    <div id="mobile-nav-bar">
+      <ul>
+        <li>
+          <%= link_to root_path do %>
+            <i class="fa-solid fa-house"></i>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to root_path do %>
+            <i class="fa-solid fa-plus"></i>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to root_path do %>
+            <i class="fa-solid fa-magnifying-glass"></i>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to root_path do %>
+            <i class="fa-solid fa-user"></i>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to root_path do %>
+            <i class="fa-solid fa-bell"></i>
+          <% end %>
+        </li>
       </ul>
     </div>
-  </div>
+
+      <%# pushbar slide menu %>
+      <div id="mobile-menu" data-pushbar-id="mypushbar1" data-pushbar-direction="left">
+        <%# close menu %>
+        <div id="burger-close" data-pushbar-close>
+          <span><i class="fa-solid fa-xmark"></i></span>
+        </div>
+        <%# menu content %>
+        <ul class="mobile-nav-links">
+          <li>link 1</li>
+          <li>link 2</li>
+          <li>link 3</li>
+          <li>link 4</li>
+        </ul>
+      </div>
+    </div>
+
+  <% end %>
 </header>
 
 <script type="text/javascript">
