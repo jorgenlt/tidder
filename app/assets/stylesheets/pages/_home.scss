@@ -130,3 +130,34 @@ body {
     margin-top: 30px;
   }
 }
+
+@media only screen and (max-width: 600px) {
+  .container {
+    margin-top: 0px;
+  }
+
+  .post-container {
+    width: 100%;
+    border-radius: 0px;
+    margin: 3px 0px;
+    padding: 15px 20px;
+
+    .form-control {
+      font-size: 14px;
+    }
+  }
+
+  .post-actions {
+    font-size: 14px;
+
+    ul {
+      margin: 20px 0px 0px 0px;
+    }
+  }
+
+  .post-comments {
+    .add-comment {
+      font-size: 14px;
+    }
+  }
+}
