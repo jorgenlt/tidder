@@ -41,8 +41,38 @@
         <span><i class="fa-solid fa-bars"></i></span>
       </div>
 
+    <div id="mobile-nav-bar">
+      <ul>
+        <li>
+          <%= link_to root_path do %>
+            <i class="fa-solid fa-house"></i>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to root_path do %>
+            <i class="fa-solid fa-plus"></i>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to root_path do %>
+            <i class="fa-solid fa-magnifying-glass"></i>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to root_path do %>
+            <i class="fa-solid fa-user"></i>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to root_path do %>
+            <i class="fa-solid fa-bell"></i>
+          <% end %>
+        </li>
+      </ul>
+    </div>
+
       <%# pushbar slide menu %>
-      <div id="mobile-menu" data-pushbar-id="mypushbar1" data-pushbar-direction="right">
+      <div id="mobile-menu" data-pushbar-id="mypushbar1" data-pushbar-direction="left">
         <%# close menu %>
         <div id="burger-close" data-pushbar-close>
           <span><i class="fa-solid fa-xmark"></i></span>
@@ -56,6 +86,7 @@
         </ul>
       </div>
     </div>
+
   <% end %>
 </header>
 
