@@ -4,13 +4,12 @@
     <div class="desktop-nav-home">
       <div class="nav-container">
         <div class="nav-start">
-          <img
-            src="https://i0.wp.com/www.vectorico.com/wp-content/uploads/2018/08/Reddit-logo.png?resize=300%2C300"
-            style="height: 40px; padding: 5px; margin-right: 10px;"
-            alt="logo">
+          <%= image_tag("tidder_logo.png", alt: "Tidder logo", class: "tidder-logo") %>
+          <span class="tidder-text">tidder</span>
           <%= link_to root_path do %>
             <i class="fa-solid fa-house"></i>
           <% end %>
+          <span class="tidder-text">home</span>
         </div>
 
         <div>
@@ -50,12 +49,12 @@
         </li>
         <li>
           <%= link_to root_path do %>
-            <i class="fa-solid fa-plus"></i>
+            <i class="fa-solid fa-magnifying-glass"></i>
           <% end %>
         </li>
         <li>
-          <%= link_to root_path do %>
-            <i class="fa-solid fa-magnifying-glass"></i>
+          <%= link_to new_post_path do %>
+            <i class="fa-solid fa-plus"></i>
           <% end %>
         </li>
         <li>
