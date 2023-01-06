@@ -40,11 +40,13 @@ body {
   }
 
   h1 {
+    font-weight: 500;
     font-size: 18px;
-    margin: 5px 0px;
+    margin: 10px 0px;
   }
 
   p {
+    font-weight: 300;
     font-size: 14px;
     margin: 0px 0px;
   }
@@ -53,19 +55,26 @@ body {
     font-size: 12px;
   }
 
+  .op {
+    font-weight: 600;
+    color: #0079D3;
+  }
+
 }
 
 .post-data {
-  margin: 0px 0px 5px 0px;
+  margin: 0px;
 
   p {
     margin: 0px 0px;
+    font-weight: 400;
     font-size: 12px;
     color: $light-gray;
   }
 }
 
 .post-actions {
+  font-weight: 600;
   font-size: 12px;
   color: $light-gray;
 
@@ -96,6 +105,7 @@ body {
 
 .post-comments {
   .add-comment {
+    font-weight: 600;
     font-size: 12px;
     color: $light-gray;
     margin: 20px 0px 0px 0px;
@@ -106,10 +116,12 @@ body {
   }
 
   .comment-info {
+    font-weight: 600;
     font-size: 12px;
   }
 
   .time-ago {
+    font-weight: 400;
     color: $light-gray
   }
 }
