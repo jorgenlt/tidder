@@ -1,5 +1,7 @@
-<%= simple_form_for(@post) do |f| %>
-  <%= f.input :title %>
-  <%= f.input :content %>
-  <%= f.submit %>
-<% end %>
+<div class="edit-post-container">
+  <%= simple_form_for(@post) do |f| %>
+    <%= f.input :title %>
+    <%= f.input :content, input_html: { rows: "10"} %>
+    <%= f.button :submit, "Update post", class: "btn btn-primary" %>
+  <% end %>
+</div>

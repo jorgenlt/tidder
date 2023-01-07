@@ -4,12 +4,10 @@
     <div class="desktop-nav-home">
       <div class="nav-container">
         <div class="nav-start">
-          <%= image_tag("tidder_logo.png", alt: "Tidder logo", class: "tidder-logo") %>
-          <span class="tidder-text">tidder</span>
           <%= link_to root_path do %>
-            <i class="fa-solid fa-house"></i>
+            <%= image_tag("tidder_logo.png", alt: "Tidder logo", class: "tidder-logo") %>
+            <span class="tidder-text">tidder</span>
           <% end %>
-          <span class="tidder-text">home</span>
         </div>
 
         <div>

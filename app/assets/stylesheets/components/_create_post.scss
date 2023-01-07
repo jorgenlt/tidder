@@ -1,0 +1,9 @@
+.create-post-container {
+  padding: 60px 20px;
+  max-width: 500px;
+
+  .post_title .form-control {
+    font-weight: 500;
+    font-size: 18px;
+  }
+}
