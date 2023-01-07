@@ -1,6 +1,15 @@
 // Specific CSS for your home-page
 body {
-  background: #dae0e6;
+  background: $background;
+}
+
+.btn-primary {
+  color: $white;
+  font-weight: 600;
+
+  &:hover {
+    color: $white;
+  }
 }
 
 .display-none {
@@ -12,7 +21,7 @@ body {
   flex-direction: column;
   align-items: center;
   padding-top: 50px;
-  background: #dae0e6;
+  background: $background;
 }
 
 .cursor-pointer {

@@ -12,11 +12,11 @@
       <div class="post-comments display-none" data-post-target="comments">
         <div class="create-comment display-none" data-post-target="addComment">
           <% comment = Comment.new %>
-          <%= simple_form_for comment do |f| %>
+          <%= simple_form_for(comment) do |f| %>
             <%= hidden_field_tag "comment[post_id]", "#{post.id}" %>
             <%= hidden_field_tag "comment[user_id]", "#{current_user.id}" %>
             <%= f.input :content, placeholder: 'What are your thoughts?', label: false, input_html: { rows: '3' } %>
-            <%= f.button :submit, 'Add comment', class: 'btn-primary' %>
+            <%= f.button :submit, "Add comment", class: "btn btn-primary" %>
           <% end %>
         </div>
 
