@@ -80,3 +80,7 @@ end
 gem 'acts_as_votable'
 
 gem 'faker'
+
+group :development do
+  gem 'rails_real_favicon'
+end
