@@ -1,46 +1,9 @@
 <div class="center-container">
   <% @posts.each do |post| %>
     <div class="post-container" data-controller="post">
-      <div class="post-data">
-        <p>Posted by <%= User.find(post.user_id).username %> <%= time_ago_in_words(post.created_at) %> ago</p>
-      </div>
-      <h1><%= post.title %></h1>
-      <p><%= post.content %><p>
-
-
-      <%# create comment %>
-      <div class="post-comments display-none" data-post-target="comments">
-        <div class="create-comment display-none" data-post-target="addComment">
-          <% comment = Comment.new %>
-          <%= simple_form_for(comment) do |f| %>
-            <%= hidden_field_tag "comment[post_id]", "#{post.id}" %>
-            <%= hidden_field_tag "comment[user_id]", "#{current_user.id}" %>
-            <%= f.input :content, placeholder: 'What are your thoughts?', label: false, input_html: { rows: '3' } %>
-            <%= f.button :submit, "Add comment", class: "btn btn-primary" %>
-          <% end %>
-        </div>
-
-      <%# comments %>
-        <div class="cursor-pointer add-comment" data-action="click->post#addComment" data-post-target="hideAddComment">
-          <span><i class="fa-solid fa-comment"></i> Add comment</span>
-        </div>
-        <% comments = Comment.where(post_id: post.id) %>
-        <% comments.each do |comment| %>
-          <div class="comment">
-            <% if User.find(post.user_id).username ==  User.find(comment.user_id).username%>
-              <p class="comment-info"><%= User.find(comment.user_id).username %> <span class="op">OP</span> - <span class="time-ago"><%= time_ago_in_words(comment.created_at) %> ago</span></p>
-            <% else %>
-              <p class="comment-info"><%= User.find(comment.user_id).username %> - <span class="time-ago"><%= time_ago_in_words(comment.created_at) %> ago</span></p>
-            <% end %>
-            <p><%= comment.content %></p>
-          </div>
-        <% end %>
-      </div>
-
-      <%# post actions %>
-      <div class="post-actions">
+      <div class="post-voting">
         <ul>
-          <div class="voting">
+          <div class="post-voting-actions">
             <li>
               <%= render 'posts/upvote_link', post: post %>
             </li>
@@ -51,23 +14,110 @@
               <%= render 'posts/downvote_link', post: post %>
             </li>
           </div>
-          <li class="cursor-pointer" data-action="click->post#showComments">
-            <span><i class="fa-solid fa-comments"></i> <%= comments.length %> Comments</span>
-          </li>
-          <li>
-            <span><i class="fa-solid fa-share"></i> Share</span>
-          </li>
-          <li class="dropdown">
-            <a href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-              <i class="fa-solid fa-ellipsis"></i>
-            </a>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-              <%= link_to 'Report', root_path, class: 'dropdown-item' %>
-              <%= link_to 'Edit post', edit_post_path(post), class: 'dropdown-item' %>
-              <%= link_to 'Delete post', post_path(post), class: 'dropdown-item', data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
-            </div>
-          </li>
         </ul>
+      </div>
+      <div class="post">
+        <div class="post-data">
+          <p>Posted by <%= User.find(post.user_id).username %> <%= time_ago_in_words(post.created_at) %> ago</p>
+        </div>
+        <h1><%= post.title %></h1>
+        <p><%= post.content %><p>
+
+
+        <%# create comment %>
+        <div class="post-comments display-none" data-post-target="comments">
+          <div class="create-comment display-none" data-post-target="addComment">
+            <% comment = Comment.new %>
+            <%= simple_form_for(comment) do |f| %>
+              <%= hidden_field_tag "comment[post_id]", "#{post.id}" %>
+              <%= hidden_field_tag "comment[user_id]", "#{current_user.id}" %>
+              <%= f.input :content, placeholder: 'What are your thoughts?', label: false, input_html: { rows: '3' } %>
+              <%= f.button :submit, "Add comment", class: "btn btn-primary" %>
+            <% end %>
+          </div>
+
+        <%# comments %>
+          <div class="cursor-pointer add-comment" data-action="click->post#addComment" data-post-target="hideAddComment">
+            <span><i class="fa-solid fa-comment"></i> Add comment</span>
+          </div>
+          <% comments = Comment.where(post_id: post.id).order(cached_votes_score: :desc) %>
+          <% comments.each do |comment| %>
+            <div class="comment">
+              <% if User.find(post.user_id).username ==  User.find(comment.user_id).username%>
+                <p class="comment-info"><%= User.find(comment.user_id).username %> <span class="op">OP</span> - <span class="time-ago"><%= time_ago_in_words(comment.created_at) %> ago</span></p>
+              <% else %>
+                <p class="comment-info"><%= User.find(comment.user_id).username %> - <span class="time-ago"><%= time_ago_in_words(comment.created_at) %> ago</span></p>
+              <% end %>
+              <p><%= comment.content %></p>
+            </div>
+            <div class="comment-voting">
+              <ul>
+                <div class="comment-voting-actions">
+                  <li>
+                  <%= content_tag "div", id: "upvote-#{comment.id}" do %>
+                    <%= link_to upvote_comment_path(comment), method: :patch, remote: true, data: { disable_with: "voting..." } do %>
+                      <% if current_user.voted_up_on? comment %>
+                        <i class="fa-solid fa-arrow-up" style="color: green;"></i>
+                      <% else %>
+                        <i class="fa-solid fa-arrow-up"></i>
+                      <% end %>
+                    <% end %>
+                  <% end %>
+                  </li>
+                  <li>
+                  <%= content_tag "div", id: "like-count-#{comment.id}" do %>
+                    <%= comment.cached_votes_score %>
+                  <% end %>
+                  </li>
+                  <li>
+                  <%= content_tag "div", id: "downvote-#{comment.id}" do %>
+                    <%= link_to downvote_comment_path(comment), method: :patch, remote: true, data: { disable_with: "voting..." } do %>
+                      <% if current_user.voted_down_on? comment %>
+                        <i class="fa-solid fa-arrow-down" style="color: red;"></i>
+                      <% else %>
+                        <i class="fa-solid fa-arrow-down"></i>
+                      <% end %>
+                    <% end %>
+                  <% end %>
+                  </li>
+                </div>
+              </ul>
+            </div>
+          <% end %>
+        </div>
+
+        <%# post actions %>
+        <div class="post-actions">
+          <ul>
+            <div class="mobile-post-voting">
+              <li>
+                <%= render 'posts/upvote_link', post: post %>
+              </li>
+              <li>
+                <%= render 'posts/like_count', post: post %>
+              </li>
+              <li>
+                <%= render 'posts/downvote_link', post: post %>
+              </li>
+            </div>
+            <li class="cursor-pointer" data-action="click->post#showComments">
+              <span><i class="fa-solid fa-comments"></i> <%= comments.length %> Comments</span>
+            </li>
+            <li>
+              <span><i class="fa-solid fa-share"></i> Share</span>
+            </li>
+            <li class="dropdown">
+              <a href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fa-solid fa-ellipsis"></i>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <%= link_to 'Report', root_path, class: 'dropdown-item' %>
+                <%= link_to 'Edit post', edit_post_path(post), class: 'dropdown-item' %>
+                <%= link_to 'Delete post', post_path(post), class: 'dropdown-item', data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+              </div>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   <% end %>

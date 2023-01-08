@@ -31,7 +31,6 @@ body {
 .post-container {
   background-color: $white;
   display: flex;
-  flex-direction: column;
   width: 55vw;
   padding: 10px 10px;
   margin: 5px 5px;
@@ -71,6 +70,39 @@ body {
 
 }
 
+.post-voting {
+  font-weight: 600;
+  font-size: 14px;
+  color: $light-gray;
+  min-width: 35px;
+
+  a {
+    color: $light-gray;
+  }
+
+  ul {
+    display: flex;
+    justify-content: center;
+    padding: 0px;
+    margin: 0px 0px;
+  }
+
+  li {
+    list-style: none;
+    margin-right: 10px;
+  }
+}
+
+.post-voting-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.post {
+  width: 100%;
+}
+
 .post-data {
   margin: 0px;
 
@@ -93,23 +125,18 @@ body {
 
   ul {
     display: flex;
-    justify-content: space-between;
     padding: 0px;
     margin: 10px 0px 0px 0px;
   }
 
   li {
     list-style: none;
-    margin-right: 10px;
+    margin-right: 20px;
   }
 
   .fa-ellipsis {
     padding: 5px;
   }
-}
-
-.voting {
-  display: flex;
 }
 
 .post-comments {
@@ -144,6 +171,41 @@ body {
   }
 }
 
+.comment-voting {
+  font-weight: 600;
+  font-size: 12px;
+  color: $light-gray;
+
+  a {
+    color: $light-gray;
+  }
+
+  ul {
+    display: flex;
+    justify-content: space-between;
+    padding: 0px;
+    margin: 10px 0px 0px 0px;
+  }
+
+  li {
+    list-style: none;
+    margin-right: 10px;
+  }
+}
+
+.comment-voting-actions {
+  display: flex;
+}
+
+.mobile-post-voting {
+  display: none;
+  margin-right: 10px;
+
+  li {
+    margin-right: 10px;
+  }
+}
+
 // responsiveness
 
 @media only screen and (min-width: 600px) {
@@ -173,12 +235,20 @@ body {
     }
   }
 
+  .post-voting {
+    display: none;
+  }
+
   .post-actions {
     font-size: 14px;
 
     ul {
       margin: 20px 0px 0px 0px;
     }
+  }
+
+  .mobile-post-voting {
+    display: flex;
   }
 
   .post-comments {
