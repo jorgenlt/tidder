@@ -15,5 +15,12 @@ Rails.application.routes.draw do
 
   end
 
-  resources :comments, only: [:new, :create, :show]
+  resources :comments do
+    member do
+      get "upvote", to: "comments#upvote"
+      get "downvote", to: "comments#downvote"
+      # patch "upvote", to: "comments#upvote"
+      # patch "downvote", to: "comments#downvote"
+    end
+  end
 end
