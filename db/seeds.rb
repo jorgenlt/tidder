@@ -8,7 +8,7 @@
 require 'faker'
 
 10.times do
-  User.create()
+  User.create(email: , encrypted_password: "123456", username: )
 end
 
 10.times do
