@@ -8,22 +8,27 @@
 require 'faker'
 
 10.times do
-  User.create(email: , encrypted_password: "123456", username: )
+  User.create(email: Faker::Internet.email, password: "123456", username: Faker::Internet.username(specifier: 5..8))
 end
 
+puts 'Users created.'
+
+i = 1
 10.times do
-  i = 1
-  Post.create(user_id: i, title: Faker::Quote.famous_last_words, content: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Magnam optio adipisci, dolores illo quo quod quaerat laborum aliquam, temporibus voluptate officia hic quae, porro praesentium obcaecati. Voluptate optio ullam corrupti.")
+  Post.create(user_id: i, title: Faker::Quote.famous_last_words, content: Faker::Quote.matz)
   i += 1
-  puts "Post created"
 end
 
+puts 'Posts created.'
+
+postid = 1
 10.times do
-  i = 1
-  j = 1
+  userid = 1
   10.times do
-    Comment.create(user_id: j, post_id: i, content: Faker::Quote.matz)
-    i += 1
-    puts "Comment created"
+    Comment.create(user_id: userid, post_id: postid, content: Faker::Quote.matz)
+    userid += 1
   end
+  postid += 1
 end
+
+puts 'Comments created.'
