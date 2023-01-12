@@ -84,3 +84,5 @@ gem 'faker'
 group :development do
   gem 'rails_real_favicon'
 end
+
+gem "cloudinary"
