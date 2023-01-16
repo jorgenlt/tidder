@@ -37,6 +37,11 @@
       <div id="burger" data-pushbar-target="mypushbar1">
         <span><i class="fa-solid fa-bars"></i></span>
       </div>
+      <div id="create-new-post">
+        <%= link_to new_post_path do %>
+          <i class="fa-solid fa-plus"></i>
+        <% end %>
+      </div>
       <div class="tidder">
           <%= link_to root_path do %>
             <%= image_tag("tidder_logo.png", alt: "Tidder logo", class: "tidder-logo") %>
@@ -82,7 +87,7 @@
         </div>
         <%# menu content %>
         <ul class="mobile-nav-links">
-          <li>link 1</li>
+          <li><%= link_to 'Log out', destroy_user_session_path, data: {turbo_method: :delete} %></li>
           <li>link 2</li>
           <li>link 3</li>
           <li>link 4</li>

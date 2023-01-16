@@ -57,7 +57,6 @@
 
 #mobile-nav-home {
   display: none;
-  justify-content: space-between;
   background: $white;
   height: 50px;
   width: 100%;
@@ -70,6 +69,7 @@
   #burger {
     font-size: 30px;
     margin: 0px 10px;
+    flex: 1;
   }
 
   #burger-close {
@@ -80,8 +80,24 @@
     right: 16px;
   }
 
+  #create-new-post {
+    display: flex;
+    justify-content: center;
+
+    a {
+      color: $black;
+    }
+
+    i {
+      font-size: 20px;
+    }
+  }
+
   .tidder {
     margin-right: 20px;
+    flex: 1;
+    display: flex;
+    justify-content: end;
 
     a {
       color: $black;
@@ -107,6 +123,11 @@
     position: absolute;
     top: 10vh;
     left: 0vw;
+
+    a {
+      text-decoration: none;
+      color: $black;
+    }
   }
 
   li {
@@ -249,8 +270,12 @@ html.pushbar_locked .pushbar_overlay {
     display: none;
   }
 
-  #mobile-nav-home, #mobile-nav-bar {
+  #mobile-nav-home {
     display: flex;
   }
+
+  // #mobile-nav-bar {
+  //   display: flex;
+  // }
 
 }
