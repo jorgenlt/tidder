@@ -10,6 +10,10 @@ Rails.application.routes.draw do
     member do
       get "upvote", to: "posts#upvote"
       get "downvote", to: "posts#downvote"
+      # patch "upvote", to: "posts#upvote"
+      # patch "downvote", to: "posts#downvote"
+      # put "upvote", to: "posts#upvote"
+      # put "downvote", to: "posts#downvote"
     end
     resources :comments, only: [:new, :create, :show]
 
