@@ -1,1 +1,1 @@
-tidder - the frontpage of internet
+Visit site: http://www.tidder.eu
