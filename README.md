@@ -2,18 +2,14 @@
 
 # tidder - a Reddit-clone web application.
 
-The app is live at [messagemate.me](https://www.tidder.eu).
+The app is live at [tidder.eu](https://www.tidder.eu).
 
 </br>
 </br>
-<div style="display: flex;">
+<div class="d-flex align-items-center">
   <img
-    src="https://user-images.githubusercontent.com/108831121/215315086-6bec3102-2c50-441a-a5b1-2ec071d5eaee.png"
-    width="300"
-    height="auto">
-  <img
-    src="https://user-images.githubusercontent.com/108831121/215315089-bee8cac9-edbe-49c4-aac7-64e01657c5a7.png"
-    width="300"
+    src="https://user-images.githubusercontent.com/108831121/219307211-47535c00-a5ac-4e53-a9f0-9b597b93d6ef.png"
+    height="700"
     height="auto">
   <a
     href="https://vimeo.com/798677053"
@@ -21,16 +17,16 @@ The app is live at [messagemate.me](https://www.tidder.eu).
     target="_blank"
    >
     <img
-      src="https://user-images.githubusercontent.com/108831121/218423865-8169d956-f8fc-4910-94c7-74b38967d6b2.png"
+      src="https://user-images.githubusercontent.com/108831121/219307567-74f3a448-ce66-4000-8fa6-38650c161dfe.png"
       alt="MessageMate demo"
-      width="300"
+      height="650"
     />
   </a>
-
+ 
 </div>
 </br>
 <div>
-  <img src="https://user-images.githubusercontent.com/108831121/215315281-a16534b2-b757-43c2-a592-8fd72bf2cc23.png" width="600" height="auto">
+  <img src="https://user-images.githubusercontent.com/108831121/219307249-2d81a68d-a558-4bc1-baeb-e18fff61ddde.png" width="600" height="auto">
 </div>
 </br>
 </br>
