@@ -11,7 +11,7 @@ The app is live at [tidder.eu](https://www.tidder.eu).
     src="https://user-images.githubusercontent.com/108831121/219307211-47535c00-a5ac-4e53-a9f0-9b597b93d6ef.png"
     height="700"
     height="auto">
-  <a
+  <a class="d-flex align-items-center"
     href="https://vimeo.com/798677053"
     title="tidder demo"
     target="_blank"
@@ -22,7 +22,7 @@ The app is live at [tidder.eu](https://www.tidder.eu).
       height="650"
     />
   </a>
- 
+
 </div>
 </br>
 <div>
@@ -43,10 +43,8 @@ The app is live at [tidder.eu](https://www.tidder.eu).
 </br>
 
 ## Technologies
-Tidder is built with <%= link_to 'Ruby on Rails', 'https://rubyonrails.org/', target: '_blank' %> on both backend and frontend.
-Data is stored in a PostgreSQL database and Cloudinary is used for cloud storage of the profile image files. Authentication is being
-handled with the <%= link_to 'Devise gem', 'https://github.com/heartcombo/devise', target: '_blank' %>. This ensures the user to
-securely sign in and sign up to the application.
+Tidder is built with [Ruby on Rails](https://rubyonrails.org/) on both backend and frontend. Data is stored in a PostgreSQL database and Cloudinary is used for cloud storage of the profile image files. Authentication is being handled with the [Devise gem](https://github.com/heartcombo/devise). This ensures the user to securely sign in and sign up to the application.
+
 
 The application is additionally supported by Webpack, simple_form, act_as_votable, stimulus and bootstrap.
 
