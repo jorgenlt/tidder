@@ -2,7 +2,7 @@
 
 # tidder - a Reddit-clone web application.
 
-The app is live at [tidder.eu](https://www.tidder.eu).
+The app is live at [tidder.eu](https://tidderapp.herokuapp.com/).
 
 
 <div class="d-flex align-items-center">
